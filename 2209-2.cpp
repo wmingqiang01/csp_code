@@ -1,47 +1,28 @@
-#include <bits/stdc++.h>
-using namespace std;
-int n, x;
-const int N = 35;
+#include<bits/stdc++.h>
+ using namespace std;
 
+ int arr[100005];
 
-int sum(vector<int> &vec, int pre, int rear)
-{
-    int ans;
-    for (int i = pre; i <= rear; i++)
-        ans += vec[i];
-    return ans;
-}
-
-int main()
-{
-    cin >> n >> x;
-    int aa;
-    vector<int> a;
+ int main(){
+    int n,x;
+    cin>>n>>x;
+    int book[35];
+    int sum=0;
+    for(int i=0;i<n;i++){
+        cin>>book[i];
+        sum+=book[i];
+    }
+    int target =sum-x;//转化为背包问题
+    arr[0]={0};
     for (int i = 0; i < n; i++)
     {
-        cin >> aa;
-        a.push_back(aa);
-    }
-    sort(a.begin(), a.end());
-    int price;
-    int min_price = INT_MAX;
-    int p = 0;
-    int q = n - 1;
-    while (p <= q)
-    {
-        price = sum(a, p, q);
-        if (price > x)
+        for (int j = target; j >=book[i]; j++)
         {
-            q--;
-            min_price = min(price, min_price);
+            arr[j]=max(arr[j],arr[j-book[i]]+book[i]);
         }
-        else if (price < x)
-        {
-            p++;
-        }
-        else
-            cout << x << endl;
     }
-    cout << min_price << endl;
+    
+    int result =sum-arr[target];
+    cout<<result;
     return 0;
-}
+ }
