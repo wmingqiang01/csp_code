@@ -4,19 +4,17 @@ int n,N;
 
 int main(){
     cin>>n>>N;
-    int a[N];
+    int a[N]={0};
     for(int i=0;i<n;i++){
         int flag;
         cin>>flag;
-        a[flag]+=i;
+        a[flag]++;
     }
+    int sum;
     for(int j=1;j<N;j++){
-        a[j]=a[j-1];
+        a[j]+=a[j-1];
+        sum+=a[j];
     }
-    int f;
-    for(int i=0;i<N;i++){
-        f+=a[i];
-    }
-    cout<<f<<endl;
+    cout<<sum<<endl;
     return 0;
 }
