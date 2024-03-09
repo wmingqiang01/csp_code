@@ -13,4 +13,5 @@ int main(){
         cout<<(prices[i]+prices[i+1]+prices[i-1])/3<<" ";
     }
     cout<<(prices[n-1]+prices[n-2])/2<<" ";
+    return 0;
 }
